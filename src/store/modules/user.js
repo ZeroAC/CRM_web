@@ -1,9 +1,10 @@
-import { login, logout, getInfo } from '@/api/user'
-import { getToken, setToken, removeToken } from '@/utils/auth'
+import { adminLogin, adminInfo, adminLogout } from '@/api/admin'
+import { getToken, setToken, getGuid, setGuid, removeData } from '@/utils/auth'
 import { resetRouter } from '@/router'
 
 const getDefaultState = () => {
   return {
+    guid: getGuid(),
     token: getToken(),
     name: '',
     avatar: ''
@@ -16,6 +17,9 @@ const mutations = {
   RESET_STATE: (state) => {
     Object.assign(state, getDefaultState())
   },
+  SET_GUID: (state, guid) => {
+    state.guid = guid
+  },
   SET_TOKEN: (state, token) => {
     state.token = token
   },
@@ -27,15 +31,23 @@ const mutations = {
   }
 }
 
-const actions = {
+const actions = {//vuex 中默认定义
   // user login
   login({ commit }, userInfo) {
-    const { username, password } = userInfo
+    const { username, password, captcha, number } = userInfo;
     return new Promise((resolve, reject) => {
-      login({ username: username.trim(), password: password }).then(response => {
-        const { data } = response
-        commit('SET_TOKEN', data.token)
-        setToken(data.token)
+      adminLogin({
+        login_name: username.trim(),
+        password: password,
+        method: 2,
+        captcha,
+        number
+      }).then(response => {
+        const { ResultData } = response
+        commit('SET_TOKEN', ResultData.token)
+        commit('SET_GUID', ResultData.guid)
+        setToken(ResultData.token)
+        setGuid(ResultData.guid)
         resolve()
       }).catch(error => {
         reject(error)
@@ -46,18 +58,18 @@ const actions = {
   // get user info
   getInfo({ commit, state }) {
     return new Promise((resolve, reject) => {
-      getInfo(state.token).then(response => {
-        const { data } = response
+      adminInfo(state.token).then(response => {
+        const { ResultData } = response
 
-        if (!data) {
-          return reject('Verification failed, please Login again.')
+        if (!ResultData) {
+          return reject('验证失败，请重新登录')
         }
 
-        const { name, avatar } = data
+        const { nick_name, avatar } = ResultData
 
-        commit('SET_NAME', name)
+        commit('SET_NAME', nick_name)
         commit('SET_AVATAR', avatar)
-        resolve(data)
+        resolve(ResultData)
       }).catch(error => {
         reject(error)
       })
@@ -67,8 +79,8 @@ const actions = {
   // user logout
   logout({ commit, state }) {
     return new Promise((resolve, reject) => {
-      logout(state.token).then(() => {
-        removeToken() // must remove  token  first
+      adminLogout(state.token).then(() => {
+        removeData() // must remove  token  first
         resetRouter()
         commit('RESET_STATE')
         resolve()
@@ -81,7 +93,7 @@ const actions = {
   // remove token
   resetToken({ commit }) {
     return new Promise(resolve => {
-      removeToken() // must remove  token  first
+      removeData() // must remove  token  first
       commit('RESET_STATE')
       resolve()
     })
