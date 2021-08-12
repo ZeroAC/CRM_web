@@ -13,7 +13,7 @@ const getDefaultState = () => {
 
 const state = getDefaultState()
 
-const mutations = {
+const mutations = { // 必须是同步函数
   RESET_STATE: (state) => {
     Object.assign(state, getDefaultState())
   },
@@ -31,13 +31,13 @@ const mutations = {
   }
 }
 
-const actions = {//vuex 中默认定义
+const actions = { // vuex 中默认定义 可以包含任意异步操作。
   // user login
   login({ commit }, userInfo) {
-    const { username, password, captcha, number } = userInfo;
+    const { username, password, captcha, number } = userInfo
     return new Promise((resolve, reject) => {
       adminLogin({
-        login_name: username.trim(),
+        username: username.trim(),
         password: password,
         method: 2,
         captcha,

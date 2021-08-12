@@ -126,16 +126,16 @@ export default {
         this.$refs.password.focus()
       })
     },
-    handleTest(){
+    handleTest() {
       console.log(123)
     },
     // 点击登录的回调
     handleLogin() {
       console.log(123)
-      this.$refs.loginForm.validate(valid => {//验证
+      this.$refs.loginForm.validate(valid => { // 验证
         if (valid) {
           this.loading = true
-          this.$store.dispatch('user/login', this.loginForm).then(() => {//调用vuex中的user/login方法
+          this.$store.dispatch('user/login', this.loginForm).then(() => { // 调用vuex中的user/login方法
             this.$router.push({ path: this.redirect || '/' })
             this.loading = false
           }).catch(() => {

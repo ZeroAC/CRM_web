@@ -1,16 +1,16 @@
 export const hostUrl = 'https://csdn-exam-admin.oss-cn-hangzhou.aliyuncs.com'
-export const defaultGuid = '45dc325dhs5m'
-export const defaultToken = 'cinterViewAdmin888'
+export const defaultGuid = 'CRM2021080808'
+export const defaultToken = 'CRMPublicToken2021'
 export const defaultVersion = 1
 export const hashRule = [
-  [0, 4, 9, 15, 22, 28],
-  [2, 8, 19, 25, 30, 31],
-  [20, 25, 31, 3, 4, 8],
-  [25, 31, 0, 9, 13, 17],
-  [29, 2, 11, 17, 21, 26],
-  [10, 15, 18, 29, 2, 3],
-  [5, 10, 15, 17, 18, 22],
-  [8, 20, 22, 27, 19, 25],
+  [0, 6, 9, 15, 22, 28],
+  [2, 8, 17, 25, 30, 31],
+  [20, 28, 31, 3, 4, 8],
+  [25, 31, 4, 9, 13, 17],
+  [29, 2, 11, 27, 21, 26],
+  [10, 15, 18, 21, 2, 3],
+  [5, 10, 15, 17, 11, 22],
+  [8, 20, 22, 27, 19, 27]
 ]
 
 // 需要自定义的提示
