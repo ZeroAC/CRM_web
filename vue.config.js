@@ -36,6 +36,16 @@ module.exports = {
       warnings: false,
       errors: true
     },
+    /** 配置代理 将请求转发到测试api地址 */
+    proxy: {
+      '/dev-api': {
+        target: 'http://127.0.0.1:80/',
+        changOrigin: true,
+        pathRewrite: {
+          '^/dev-api': ''
+        }
+      }
+    },
     before: require('./mock/mock-server.js')
   },
   configureWebpack: {
