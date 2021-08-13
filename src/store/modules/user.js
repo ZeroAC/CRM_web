@@ -43,11 +43,11 @@ const actions = { // vuex 中默认定义 可以包含任意异步操作。
         captcha,
         number
       }).then(response => {
-        const { ResultData } = response
-        commit('SET_TOKEN', ResultData.token)
-        commit('SET_GUID', ResultData.guid)
-        setToken(ResultData.token)
-        setGuid(ResultData.guid)
+        const { data } = response
+        commit('SET_TOKEN', data.token)
+        commit('SET_GUID', data.guid)
+        setToken(data.token)
+        setGuid(data.guid)
         resolve()
       }).catch(error => {
         reject(error)
@@ -59,17 +59,17 @@ const actions = { // vuex 中默认定义 可以包含任意异步操作。
   getInfo({ commit, state }) {
     return new Promise((resolve, reject) => {
       adminInfo(state.token).then(response => {
-        const { ResultData } = response
+        const { data } = response
 
-        if (!ResultData) {
+        if (!data) {
           return reject('验证失败，请重新登录')
         }
 
-        const { nick_name, avatar } = ResultData
+        const { nick_name, avatar } = data
 
         commit('SET_NAME', nick_name)
         commit('SET_AVATAR', avatar)
-        resolve(ResultData)
+        resolve(data)
       }).catch(error => {
         reject(error)
       })

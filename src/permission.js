@@ -6,6 +6,7 @@ import 'nprogress/nprogress.css' // progress bar style
 import { getToken } from '@/utils/auth' // get token from cookie
 import getPageTitle from '@/utils/get-page-title'
 
+// 路由拦截器 所有的路由进入前会先走这里
 NProgress.configure({ showSpinner: false }) // NProgress Configuration
 
 const whiteList = ['/login'] // no redirect whitelist
@@ -19,21 +20,19 @@ router.beforeEach(async(to, from, next) => {
 
   // determine whether the user has logged in
   const hasToken = getToken()
-
-  if (hasToken) {
-    if (to.path === '/login') {
+  if (hasToken) { // 查看是否有token 有token则可以免密登录
+    if (to.path === '/login') { // 直接跳转到首页
       // if is logged in, redirect to the home page
       next({ path: '/' })
       NProgress.done()
     } else {
-      const hasGetUserInfo = store.getters.name
+      const hasGetUserInfo = store.getters.name // 是否存有该用户的用户名 store.getters为全局存储的
       if (hasGetUserInfo) {
         next()
-      } else {
+      } else { // 没有信息 则去后台获取
         try {
           // get user info
           await store.dispatch('user/getInfo')
-
           next()
         } catch (error) {
           // remove token and go to login page to re-login

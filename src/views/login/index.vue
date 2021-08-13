@@ -136,7 +136,8 @@ export default {
         if (valid) {
           this.loading = true
           this.$store.dispatch('user/login', this.loginForm).then(() => { // 调用vuex中的user/login方法
-            this.$router.push({ path: this.redirect || '/' })
+            console.log(this.redirect)
+            this.$router.push({ path: this.redirect || '/' })// 跳转到首页
             this.loading = false
           }).catch(() => {
             this.loading = false

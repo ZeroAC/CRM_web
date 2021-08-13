@@ -26,14 +26,15 @@ service.interceptors.request.use(
 service.interceptors.response.use(
   response => {
     const res = response.data
-    if (res.ServerNo !== 200) {
-      if (res.ServerNo === 'SN005' || res.ServerNo === 'SN007' || res.ServerNo === 'SN009') { // 签名错误（同账户登录）退出登录
+    console.log(res)
+    if (res.code !== 200) {
+      if (res.code === 'SN005' || res.code === 'SN007' || res.code === 'SN009') { // 签名错误（同账户登录）退出登录
         store.dispatch('user/logout').then(() => {
           location.reload()
         })
         return
       }
-      if (res.ServerNo === 500) {
+      if (res.code === 500) {
         Message({
           message: '服务器出了些小问题::>_<::',
           type: 'warning',
@@ -43,13 +44,13 @@ service.interceptors.response.use(
       }
       Message.closeAll() // 防止多次弹出提示框
       Message({
-        message: res.ResultData || 'Error',
+        message: res.message || 'Error',
         type: 'warning',
         duration: 5 * 1000
       })
       return Promise.reject(res)
     } else {
-      return res
+      return res // 返回结果需要是一个对象 如果为空 则会抛出 网络不给力
     }
   },
   error => {

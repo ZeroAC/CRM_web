@@ -26,8 +26,8 @@ function checkApi(config) {
       cryptToken += token.charAt(n)
     })
     signature = md5(guid + params + time + cryptToken + path)
-    // console.log(path + '----' + time + '----' + guid + '----' + params + '----' + cryptToken);
-    // console.log(signature + '-----');
+    // console.log(path + '----' + time + '----' + guid + '----' + params + '----' + cryptToken)
+    // console.log(signature + '-----')
   } else {
     signature = md5(guid + params + time + token + path)
     // console.log(path + '----' + time + '----' + guid + '----' + params + '----' + token)
