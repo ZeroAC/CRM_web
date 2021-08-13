@@ -5,11 +5,13 @@ import { noCheckApi } from '@/utils/constant'
 import { Message } from 'element-ui'
 import store from '@/store'
 
+// 处理所有网络请求
 const service = axios.create({
   baseURL: process.env.VUE_APP_BASE_API,
   timeout: 15000
 })
 
+// 验证签名
 service.interceptors.request.use(
   config => {
     if (noCheckApi.indexOf(config.url) === -1) { // 需要签名的接口
@@ -23,10 +25,10 @@ service.interceptors.request.use(
   }
 )
 
+// 定义各种请求状态
 service.interceptors.response.use(
   response => {
     const res = response.data
-    console.log(res)
     if (res.code !== 200) {
       if (res.code === 'SN005' || res.code === 'SN007' || res.code === 'SN009') { // 签名错误（同账户登录）退出登录
         store.dispatch('user/logout').then(() => {

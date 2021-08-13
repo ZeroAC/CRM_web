@@ -58,19 +58,18 @@ const actions = { // vuex 中默认定义 可以包含任意异步操作。
   // get user info
   getInfo({ commit, state }) {
     return new Promise((resolve, reject) => {
-      adminInfo(state.token).then(response => {
+      // console.log(state) 测试vuex里的值
+      adminInfo({}).then(response => { // 待解决 即便接口是200 也一致报错
         const { data } = response
-
         if (!data) {
           return reject('验证失败，请重新登录')
         }
-
         const { nick_name, avatar } = data
-
+        console.log(nick_name, avatar)
         commit('SET_NAME', nick_name)
         commit('SET_AVATAR', avatar)
         resolve(data)
-      }).catch(error => {
+      }).catch(error => { // 待解决 始终执行这句
         reject(error)
       })
     })

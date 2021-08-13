@@ -16,7 +16,6 @@ function checkApi(config) {
   if (commonApi.indexOf(path) === -1) {
     guid = store.getters.guid
     token = store.getters.token
-
     // 生成签名
     const hashStr = token.charAt(1) + token.charAt(5) + token.charAt(6)
     const hashKind = parseInt(hashStr, 16) % 8
@@ -33,7 +32,6 @@ function checkApi(config) {
     // console.log(path + '----' + time + '----' + guid + '----' + params + '----' + token)
     // console.log(signature + '-----')
   }
-
   // 重组参数
   config[paramsType] = {}
   config[paramsType].time = time
