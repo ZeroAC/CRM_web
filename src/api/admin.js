@@ -1,11 +1,11 @@
 import request from '@/utils/request'
 
 export function adminCreate(data) {
-    return request({
-        url: '/api/admin/create',
-        method: 'post',
-        data
-    })
+  return request({
+    url: '/api/admin/create',
+    method: 'post',
+    data
+  })
 }
 
 /**
@@ -14,7 +14,7 @@ export function adminCreate(data) {
  * @returns
  */
 export function adminList(data) {
-    return request({ url: '/api/admin/list', method: 'post', data })
+  return request({ url: '/api/admin/list', method: 'post', data })
 }
 
 /**
@@ -23,7 +23,7 @@ export function adminList(data) {
  * @returns
  */
 export function adminAll(data) {
-    return request({ url: '/api/admin/all', method: 'post', data })
+  return request({ url: '/api/admin/all', method: 'post', data })
 }
 
 /**
@@ -32,7 +32,7 @@ export function adminAll(data) {
  * @returns
  */
 export function adminDetail(data) {
-    return request({ url: '/api/admin/info', method: 'post', data })
+  return request({ url: '/api/admin/info', method: 'post', data })
 }
 
 /**
@@ -41,7 +41,7 @@ export function adminDetail(data) {
  * @returns
  */
 export function adminUpdate(data) {
-    return request({ url: `/api/admin/update`, method: 'post', data })
+  return request({ url: `/api/admin/update`, method: 'post', data })
 }
 
 /**
@@ -50,7 +50,7 @@ export function adminUpdate(data) {
  * @returns
  */
 export function updatePassword(data) {
-    return request({ url: `/api/admin/password`, method: 'post', data })
+  return request({ url: `/api/admin/password`, method: 'post', data })
 }
 
 /**
@@ -59,7 +59,7 @@ export function updatePassword(data) {
  * @returns
  */
 export function adminDelete(data) {
-    return request({ url: `/api/admin/delete`, method: 'post', data })
+  return request({ url: `/api/admin/delete`, method: 'post', data })
 }
 
 /**
@@ -68,7 +68,7 @@ export function adminDelete(data) {
  * @returns
  */
 export function updateStatus(data) {
-    return request({ url: `/api/admin/update/status`, method: 'post', data })
+  return request({ url: `/api/admin/update/status`, method: 'post', data })
 }
 
 /**
@@ -77,11 +77,11 @@ export function updateStatus(data) {
  * @returns
  */
 export function adminLogin(data) {
-    return request({
-        url: '/api/admin/login',
-        method: 'post',
-        data
-    })
+  return request({
+    url: '/api/admin/login',
+    method: 'post',
+    data
+  })
 }
 
 /**
@@ -90,11 +90,11 @@ export function adminLogin(data) {
  * @returns
  */
 export function adminInfo(data) {
-    return request({
-        url: '/api/admin/info',
-        method: 'post',
-        data
-    })
+  return request({
+    url: '/api/admin/info',
+    method: 'post',
+    data
+  })
 }
 
 /**
@@ -103,9 +103,9 @@ export function adminInfo(data) {
  * @returns
  */
 export function adminLogout(data) {
-    return request({
-        url: '/api/admin/logout',
-        method: 'post',
-        data
-    })
+  return request({
+    url: '/api/admin/logout',
+    method: 'post',
+    data
+  })
 }

@@ -37,7 +37,7 @@ const actions = { // vuex 中默认定义 可以包含任意异步操作。
     const { username, password, captcha, number } = userInfo
     return new Promise((resolve, reject) => {
       adminLogin({
-        username: username.trim(),
+        user_name: username.trim(),
         password: password,
         method: 2,
         captcha,

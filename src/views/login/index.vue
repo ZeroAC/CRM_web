@@ -97,7 +97,7 @@ export default {
     }
   },
   computed: {
-    codeurl() {
+    codeurl() { // 请求获取验证码
       return process.env.VUE_APP_BASE_API + 'captcha/' + this.loginForm.number
     }
   },
@@ -167,7 +167,7 @@ $cursor: #fff;
 
 /* reset element-ui css */
 .login-container {
-  background: url('../../assets/imgs/bg_login.svg') center no-repeat;
+  background: url('../../assets/imgs/bg_login6.jpg') center no-repeat;
   background-size: cover;
   .el-input {
     display: inline-block;
@@ -213,7 +213,7 @@ $light_gray:#eee;
 
   .login-form {
     position: relative;
-    width: 520px;
+    width: 720px;
     max-width: 100%;
     padding: 160px 35px 0;
     margin: 0 auto;
@@ -232,7 +232,7 @@ $light_gray:#eee;
     position: relative;
 
     .title {
-      font-size: 26px;
+      font-size: 46px;
       color: $light_gray;
       margin: 0px auto 40px auto;
       text-align: center;

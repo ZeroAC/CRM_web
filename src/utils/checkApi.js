@@ -1,6 +1,5 @@
 import md5 from 'md5'
 import store from '@/store'
-// import CryptoJS from 'crypto-js'
 import { defaultGuid, defaultToken, defaultVersion, commonApi, hashRule } from '@/utils/constant'
 
 function checkApi(config) {
@@ -27,12 +26,12 @@ function checkApi(config) {
       cryptToken += token.charAt(n)
     })
     signature = md5(guid + params + time + cryptToken + path)
-    console.log(path + '----' + time + '----' + guid + '----' + params + '----' + cryptToken)
+    // console.log(path + '----' + time + '----' + guid + '----' + params + '----' + cryptToken);
     // console.log(signature + '-----');
   } else {
     signature = md5(guid + params + time + token + path)
     // console.log(path + '----' + time + '----' + guid + '----' + params + '----' + token)
-    // console.log(signature + '-----');
+    // console.log(signature + '-----')
   }
 
   // 重组参数
